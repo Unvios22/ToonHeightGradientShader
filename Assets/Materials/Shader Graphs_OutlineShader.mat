@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_ShaderLit
-  m_Shader: {fileID: -6465566751694194690, guid: 2a939218d3859994da5b14cd3f927ae4,
+  m_Name: Shader Graphs_OutlineShader
+  m_Shader: {fileID: -6465566751694194690, guid: db3ad1f36caf09b49b46bec2cd68e222,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,6 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_24B04BF8: 1
-    - Vector1_46F2AEF7: 0
+    - Vector1_991951CC: -1.72
+    - Vector1_A631544: 0.18
+    - Vector1_DA309F05: 0
     m_Colors: []
