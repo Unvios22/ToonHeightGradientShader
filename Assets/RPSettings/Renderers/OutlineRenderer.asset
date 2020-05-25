@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294b19fa8a4efc140a5852aadb594186, type: 3}
   m_Name: EdgeDetectionPostProcess
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     outlineMaterial: {fileID: 2100000, guid: fd924129325d60d4a9e3c2c783f09d70, type: 2}
 --- !u!114 &11400000
