@@ -1,9 +1,12 @@
-﻿Shader "Custom/EdgeDetectionShaderDismantled"
+﻿Shader "Custom/EdgeDetectionShaderModified"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Threshold("Threshold", float) = 0.01
+        _DarkenFactor("_DarkenFactor", float) = 0.1
+        _SaturationIntensity("_SaturationIntensity", float) = 1
+        _LuminanceFactor("_LuminanceFactor", float) = 1
         _EdgeColor("Edge color", Color) = (0,0,0,1)
     }
     SubShader
@@ -32,7 +35,6 @@
             };
  
             sampler2D _CameraDepthNormalsTexture;
-            sampler2D _CameraDepthTexture;
  
             v2f vert (appdata v)
             {
@@ -45,6 +47,9 @@
             sampler2D _MainTex;
             float4 _MainTex_TexelSize;
             float _Threshold;
+            float _DarkenFactor;
+            float _SaturationIntensity;
+            float _LuminanceFactor;
             fixed4 _EdgeColor;
  
             float4 GetPixelValue(in float2 uv) {
@@ -53,10 +58,13 @@
                 DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, uv), depth, normal);
                 return fixed4(normal, depth);
             }
+            
+            const float Epsilon = 1e-10;
+            
  
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_CameraDepthNormalsTexture, i.uv);
+                fixed4 col = tex2D(_MainTex, i.uv);
                 fixed4 orValue = GetPixelValue(i.uv);
                 float2 offsets[8] = {
                     float2(-1, -1),
@@ -73,8 +81,16 @@
                     sampledValue += GetPixelValue(i.uv + offsets[j] * _MainTex_TexelSize.xy);
                 }
                 sampledValue /= 8;
+                
+                fixed lum = saturate(Luminance(col.rgb) * _LuminanceFactor);
+
+                //saturate
+				fixed4 saturated;
+				saturated.rgb = lerp(col.rgb, fixed3(lum,lum,lum), _SaturationIntensity);
+				saturated.a = col.a;
+                
                  
-                return lerp(col, _EdgeColor, step(_Threshold, length(orValue - sampledValue)));
+                return lerp(col, saturated, step(_Threshold, length(orValue - sampledValue)));
             }
             ENDCG
         }

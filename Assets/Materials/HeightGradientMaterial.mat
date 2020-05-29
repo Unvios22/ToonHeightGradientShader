@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_ShaderUnlit
+  m_Name: HeightGradientMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 47cb85aef36136948ad940deeeca609f,
     type: 3}
   m_ShaderKeywords: 
@@ -21,13 +21,16 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - Boolean_7957390: 0
     - Vector1_140A6691: 0.015
     - Vector1_82BF89ED: 0
     - Vector1_B42E1F6C: 0.008
     - Vector1_B4BE8439: 0.01
     - Vector1_C632C01A: 12
-    - Vector1_F2D6DB56: -0.04
-    - Vector1_F45F8DF9: -25.17
+    - Vector1_F2D6DB56: -0.2
+    - Vector1_F45F8DF9: -4.95
     m_Colors:
     - Color_378D64F9: {r: 0, g: 0, b: 0, a: 1}
+    - Color_55597CA7: {r: 0.121252485, g: 0.9840106, b: 1.1892071, a: 1}
     - Color_59F6D584: {r: 0, g: 0.06282759, b: 1, a: 1}
+    - Color_980ADAEA: {r: 1.2311444, g: 0.23657286, b: 0, a: 1}
