@@ -24,9 +24,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _DarkenFactor: 6.57
-    - _LuminanceFactor: 1.65
-    - _SaturationIntensity: -3.33
+    - _DarkenFactor: 0.5
+    - _LuminanceFactor: 2.2
+    - _SaturationIntensity: -0.75
     - _Threshold: 0.1
     m_Colors:
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}

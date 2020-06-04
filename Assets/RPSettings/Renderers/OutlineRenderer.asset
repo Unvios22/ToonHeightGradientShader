@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294b19fa8a4efc140a5852aadb594186, type: 3}
   m_Name: NewOutlineFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
-    outlineMaterial: {fileID: 2100000, guid: 20f2ec6d3ef14244fa40f8ed54e19f62, type: 2}
+    outlineMaterial: {fileID: 2100000, guid: 114d8678773052f4b96f2d223970211a, type: 2}
 --- !u!114 &-6828533606538425925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,6 +28,7 @@ MonoBehaviour:
   m_Name: NewDepthNormalsFeature
   m_EditorClassIdentifier: 
   m_Active: 1
+  _renderPassEvent: 250
 --- !u!114 &-3989954872024006118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +60,8 @@ MonoBehaviour:
   - {fileID: -6828533606538425925}
   - {fileID: -3989954872024006118}
   - {fileID: -8989533060451724473}
-  m_RendererFeatureMap: bbc9752ddd2c3ca11a822bff2ed5a0c8471325634fc33e83
+  - {fileID: 4165595138574648109}
+  m_RendererFeatureMap: bbc9752ddd2c3ca11a822bff2ed5a0c8471325634fc33e832d03d650b52acf39
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -82,3 +84,22 @@ MonoBehaviour:
     failOperation: 3
     zFailOperation: 5
   m_ShadowTransparentReceive: 1
+--- !u!114 &4165595138574648109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804bf49869d3b4315a850958d8530433, type: 3}
+  m_Name: NewBlit
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    Event: 300
+    blitMaterial: {fileID: 2100000, guid: 20f2ec6d3ef14244fa40f8ed54e19f62, type: 2}
+    blitMaterialPassIndex: 0
+    destination: 0
+    textureId: _BlitPassTexture

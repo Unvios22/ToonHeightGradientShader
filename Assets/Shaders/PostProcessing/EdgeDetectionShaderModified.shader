@@ -11,6 +11,8 @@
     }
     SubShader
     {
+    Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline"}
+    
         // No culling or depth
         Cull Off ZWrite Off ZTest Always
  
@@ -35,6 +37,7 @@
             };
  
             sampler2D _CameraDepthNormalsTexture;
+            sampler2D _CameraDepthTexture;
  
             v2f vert (appdata v)
             {
@@ -56,6 +59,11 @@
                 half3 normal;
                 float depth;
                 DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, uv), depth, normal);
+                
+                
+                float depthFromDepthTex = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv);  // sample from depth texture
+                depthFromDepthTex = Linear01Depth (depthFromDepthTex);
+                
                 return fixed4(normal, depth);
             }
             
@@ -65,6 +73,7 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
+                //fixed4 col = tex2D(_CameraDepthTexture, i.uv);
                 fixed4 orValue = GetPixelValue(i.uv);
                 float2 offsets[8] = {
                     float2(-1, -1),
@@ -82,15 +91,13 @@
                 }
                 sampledValue /= 8;
                 
+                //saturate and modify luminance
                 fixed lum = saturate(Luminance(col.rgb) * _LuminanceFactor);
-
-                //saturate
 				fixed4 saturated;
 				saturated.rgb = lerp(col.rgb, fixed3(lum,lum,lum), _SaturationIntensity);
 				saturated.a = col.a;
-                
                  
-                return lerp(col, saturated, step(_Threshold, length(orValue - sampledValue)));
+                return lerp(col, sampledValue, step(_Threshold, length(orValue - sampledValue)));
             }
             ENDCG
         }
