@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Name: NewDepthNormalsFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  _renderPassEvent: 250
+  _renderPassEvent: 300
 --- !u!114 &-3989954872024006118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    Event: 300
-    blitMaterial: {fileID: 2100000, guid: 20f2ec6d3ef14244fa40f8ed54e19f62, type: 2}
+    Event: 500
+    blitMaterial: {fileID: 2100000, guid: 114d8678773052f4b96f2d223970211a, type: 2}
     blitMaterialPassIndex: 0
     destination: 0
     textureId: _BlitPassTexture

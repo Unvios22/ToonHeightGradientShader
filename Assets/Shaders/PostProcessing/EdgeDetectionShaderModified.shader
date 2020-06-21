@@ -73,7 +73,7 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-                //fixed4 col = tex2D(_CameraDepthTexture, i.uv);
+                //fixed4 col = tex2D(_CameraDepthNormalsTexture, i.uv);
                 fixed4 orValue = GetPixelValue(i.uv);
                 float2 offsets[8] = {
                     float2(-1, -1),
@@ -97,7 +97,7 @@
 				saturated.rgb = lerp(col.rgb, fixed3(lum,lum,lum), _SaturationIntensity);
 				saturated.a = col.a;
                  
-                return lerp(col, sampledValue, step(_Threshold, length(orValue - sampledValue)));
+                return lerp(col, saturated, step(_Threshold, length(orValue - sampledValue)));
             }
             ENDCG
         }
